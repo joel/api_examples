@@ -1,0 +1,22 @@
+require:
+  - rubocop-factory_bot
+  - rubocop-gitlab-security
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+
+inherit_from:
+  - .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+    - 'lib/templates/**/*'
+  NewCops: enable
+  TargetRailsVersion: 7.0
+  TargetRubyVersion: 3.2
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
