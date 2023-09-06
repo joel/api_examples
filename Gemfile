@@ -31,6 +31,8 @@ gem "bootsnap", require: false
 
 gem "ar_ulid"
 gem "ulid"
+gem "rswag-api"
+gem "rswag-ui"
 
 group :development, :test do
   # Ruby code style checkers.
