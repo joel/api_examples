@@ -8,7 +8,7 @@ RSpec.describe <%= controller_class_name %>Controller, <%= type_metatag(:routing
     end
 
     it "routes to #show" do
-      expect(get: "/<%= ns_table_name %>/1").to route_to("<%= ns_table_name %>#show", id: "#{SecureRandom.uuid}}")
+      expect(get: "/<%= ns_table_name %>/1").to route_to("<%= ns_table_name %>#show", id: "1")
     end
 
     it "routes to #create" do
@@ -16,15 +16,15 @@ RSpec.describe <%= controller_class_name %>Controller, <%= type_metatag(:routing
     end
 
     it "routes to #update via PUT" do
-      expect(put: "/<%= ns_table_name %>/1").to route_to("<%= ns_table_name %>#update", id: "#{SecureRandom.uuid}")
+      expect(put: "/<%= ns_table_name %>/1").to route_to("<%= ns_table_name %>#update", id: "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(patch: "/<%= ns_table_name %>/1").to route_to("<%= ns_table_name %>#update", id: "#{SecureRandom.uuid}")
+      expect(patch: "/<%= ns_table_name %>/1").to route_to("<%= ns_table_name %>#update", id: "1")
     end
 
     it "routes to #destroy" do
-      expect(delete: "/<%= ns_table_name %>/1").to route_to("<%= ns_table_name %>#destroy", id: "#{SecureRandom.uuid}")
+      expect(delete: "/<%= ns_table_name %>/1").to route_to("<%= ns_table_name %>#destroy", id: "1")
     end
   end
 end

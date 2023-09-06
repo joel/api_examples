@@ -65,17 +65,17 @@ RSpec.describe "/<%= name.underscore.pluralize %>", <%= type_metatag(:request) %
         let(:attributes) { new_attributes }
 
         it "updates the requested <%= singular_table_name %>" do
-          expect do
+          expect {
             api_call
-          end.to change do
+          }.to change {
             <%= file_name %>.reload.name
-          end.to(new_attributes[:name])
+          }.to(new_attributes[:name])
         end
 
         it "renders a JSON response with the new project" do
           api_call
-          expect(response).to have_http_status(:created)
-          expect(response.content_type).to match(a_string_including("application/vnd.api+json"))
+          expect(response).to have_http_status(:ok)
+          expect(response.content_type).to match(a_string_including("application/json; charset=utf-8"))
         end
 
       end

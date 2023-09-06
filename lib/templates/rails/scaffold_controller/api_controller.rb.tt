@@ -59,9 +59,9 @@ class <%= controller_class_name %>Controller < ApplicationController
     # @return [ActionController::Parameters]
     def <%= "#{singular_table_name}_params" %>
       <%- if attributes_names.empty? -%>
-      json_deserialize(params, only: [])
+      params.fetch(:<%= singular_table_name %>, {})
       <%- else -%>
-      json_deserialize(params, only: [<%= permitted_params %>])
+      params.require(:<%= singular_table_name %>).permit(<%= permitted_params %>)
       <%- end -%>
     end
 end
