@@ -10,28 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_22_142811) do
-  create_table "deliverables", id: :string, force: :cascade do |t|
-    t.string "name", null: false
-    t.string "project_id", null: false
-    t.datetime "due_at"
-    t.integer "status", default: 0, null: false
-    t.boolean "active", default: true, null: false
-    t.json "metadata", default: {}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["id"], name: "index_deliverables_on_id", unique: true
-  end
-
-  create_table "projects", id: :string, force: :cascade do |t|
-    t.string "name", null: false
-    t.string "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["id"], name: "index_projects_on_id", unique: true
-    t.index ["name", "user_id"], name: "index_projects_on_name_and_user_id", unique: true
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_08_09_112019) do
   create_table "users", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "email", null: false
@@ -44,6 +23,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_22_142811) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "deliverables", "projects", on_delete: :cascade
-  add_foreign_key "projects", "users", on_delete: :cascade
 end
