@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: Projects API
+  version: 1.0.0
+  description: API for managing user projects
+servers:
+  - url: 'http://localhost:3000/api/v1'
+paths:
+  /projects.json:
+    get:
+      tags:
+        - Projects
+      summary: Get all projects for the authenticated user
+      description: Returns a list of projects that belong to the authenticated user.
+      operationId: getProjects
+      parameters: []
+      responses:
+        '200':
+          description: List of projects successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized. Invalid or missing authentication token.
+        '500':
+          description: Internal server error.
+      security:
+        - bearerAuth: []
+
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          description: Unique identifier for the project.
+        title:
+          type: string
+          description: Title of the project.
+          required: true
+        body:
+          type: string
+          description: Description or content of the project.
+          required: false
+        user_id:
+          type: integer
+          description: The ID of the user who owns the project.
+          required: true
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # Assuming you're using JWT, but you can omit this or change as needed
+
