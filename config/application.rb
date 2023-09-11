@@ -54,5 +54,8 @@ module BackendAuthentication
       generator.template_engine :erb
       # generator.scaffold_controller :api_controller
     end
+
+    require Rails.root.join("app/lib/response_api_version_header")
+    config.middleware.use ResponseApiVersionHeader
   end
 end
