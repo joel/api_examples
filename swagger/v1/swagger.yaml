@@ -20,7 +20,7 @@ paths:
           schema:
             type: string
             default: application/vnd.acme.v1+json
-        - name: Content-Type
+        - name: Accept
           in: header
           required: true
           schema:
@@ -41,6 +41,98 @@ paths:
           description: Internal server error.
       security:
         - bearerAuth: []
+    post:
+      summary: Create a new project.
+      tags:
+        - Projects
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: API-Version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: application/vnd.acme.v1+json
+        - name: Accept
+          in: header
+          required: true
+          schema:
+            type: string
+            default: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '201':
+          description: Successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/{project_id}:
+    delete:
+      summary: Delete a specific project.
+      tags:
+        - Projects
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          description: Unique identifier of the project.
+          schema:
+            type: string
+        - name: API-Version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: application/vnd.acme.v1+json
+        - name: Accept
+          in: header
+          required: true
+          schema:
+            type: string
+            default: application/json
+      responses:
+        '204':
+          description: Successful operation. No content returned.
+    get:
+      summary: Retrieve details of a specific project.
+      tags:
+        - Projects
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          description: Unique identifier of the project.
+          schema:
+            type: string
+        - name: API-Version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: application/vnd.acme.v1+json
+        - name: Accept
+          in: header
+          required: true
+          schema:
+            type: string
+            default: application/json
+    responses:
+      '200':
+        description: Successful operation.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
 
 components:
   schemas:
@@ -59,10 +151,6 @@ components:
           type: string
           description: Description or content of the project.
           required: false
-        user_id:
-          type: integer
-          description: The ID of the user who owns the project.
-          required: true
 
   securitySchemes:
     bearerAuth:
