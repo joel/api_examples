@@ -2,8 +2,7 @@
 
 class ApiVersion
   DEFAULT_VERSION = 1
-  API_REGEXP = %r{application/x-api-v(?<version>\d+(?<minor>\.\d*)?)\+json}
-  # application/vnd.github.v3+json
+  API_REGEXP = %r{application/vnd.acme.v(?<version>\d+(?<minor>\.\d*)?)\+json}
 
   def initialize(version)
     @version = version
@@ -32,17 +31,16 @@ class ApiVersion
   private
 
   def json_request?(request)
-    request.headers["Content-Type"] == "application/json"
+    request.headers["Accept"].include?("application/json")
   end
 
   def find_version(request)
-    return @default_version unless request.headers["Accept"]
+    return @default_version if request.headers["API-Version"].blank?
 
-    match = request.headers["Accept"].match(API_REGEXP)
-    begin
-      match[:version].to_f >= @version
-    rescue StandardError
-      false
-    end
+    match = request.headers["API-Version"].match(API_REGEXP)
+
+    return false unless match
+
+    match[:version].to_f >= @version
   end
 end

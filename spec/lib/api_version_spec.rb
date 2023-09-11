@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe ApiVersion do
   let(:default_version) { 1 }
-  let(:headers) { { "Content-Type" => "application/json" } }
+  let(:headers) { { "Accept" => "application/json" } }
 
   it "the default version should be set" do
     expect(ApiVersion::DEFAULT_VERSION).to eql(default_version)
@@ -18,25 +18,25 @@ RSpec.describe ApiVersion do
 
     context "when version is a float" do
       let(:version) { 1.1 }
-      let(:headers) { super().merge({ "Accept" => "application/x-api-v#{version}+json" }) }
+      let(:headers) { super().merge({ "API-Version" => "application/vnd.acme.v#{version}+json" }) }
 
       it { is_expected.to be_truthy }
     end
 
     context "with right version" do
-      let(:headers) { super().merge({ "Accept" => "application/x-api-v1+json" }) }
+      let(:headers) { super().merge({ "API-Version" => "application/vnd.acme.v1+json" }) }
 
       it { is_expected.to be_truthy }
     end
 
     context "with lesser version" do
-      let(:headers) { super().merge({ "Accept" => "application/x-api-v0+json" }) }
+      let(:headers) { super().merge({ "API-Version" => "application/vnd.acme.v0+json" }) }
 
       it { is_expected.to be_falsey }
     end
 
     context "with higher version" do
-      let(:headers) { super().merge({ "Accept" => "application/x-api-v2+json" }) }
+      let(:headers) { super().merge({ "API-Version" => "application/vnd.acme.v2+json" }) }
 
       it { is_expected.to be_truthy }
     end

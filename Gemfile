@@ -34,6 +34,8 @@ gem "ulid"
 gem "rswag-api"
 gem "rswag-ui"
 
+gem "rack-cors"
+
 group :development, :test do
   # Ruby code style checkers.
   gem "rubocop", require: false

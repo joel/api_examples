@@ -8,8 +8,8 @@ RSpec.describe "/api/v2/users" do
   let(:valid_headers) do
     {
       "Authorization" => "Bearer #{JWT.encode({ user_id: user.id }, Rails.application.credentials.secret_key_base, 'HS256')}",
-      "Content-Type" => "application/json",
-      "Accept" => "application/x-api-v2+json"
+      "Accept" => "application/json",
+      "API-Version" => "application/vnd.acme.v2+json"
     }
   end
 
