@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :email, null: false, index: { unique: true }
       t.string :username, null: false, index: { unique: true }
       t.string :password_digest
+      t.string :api_version
 
       t.timestamps
     end

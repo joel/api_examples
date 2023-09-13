@@ -12,9 +12,10 @@ module Api
     protected
 
     def api_version
-      return unless request.headers["API-Version"]&.match(%r{application/vnd.acme.v(?<version>\d+(?<minor>\.\d*)?)\+json})
+      return unless request.headers["API-Version"]&.match(/\d{4}-\d{2}-\d{2}/)
 
-      Current.api_version = Regexp.last_match[:version].to_f
+      Current.api_version = request.headers["API-Version"]
+      Current.user.update(api_version: request.headers["API-Version"]) if Current.user&.api_version.nil?
     end
   end
 end

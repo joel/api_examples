@@ -10,7 +10,7 @@ RSpec.describe "/api/v1/projects" do
     {
       "Authorization" => "Bearer #{token}",
       "Accept" => "application/json",
-      "API-Version" => "application/vnd.acme.v1+json"
+      "API-Version" => "2023-09-13"
     }
   end
 

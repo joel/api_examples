@@ -19,7 +19,7 @@ paths:
           required: true
           schema:
             type: string
-            default: application/vnd.acme.v1+json
+            default: "2023-09-13"
         - name: Content-Type
           in: header
           required: true
