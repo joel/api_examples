@@ -15,7 +15,7 @@ RSpec.describe "/api/v2/users" do
 
   describe "GET /index" do
     it "renders a successful response" do
-      get api_users_url, headers: valid_headers, as: :json
+      get api_v2_users_url, headers: valid_headers, as: :json
       expect(response).to be_successful
       expect(response.parsed_body).to match([JSON.parse(user.to_json(only: %i[id name email]))])
       expect(response.headers["X-Acme-Api-Version"]).to be(2.0)

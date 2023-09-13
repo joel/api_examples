@@ -26,7 +26,7 @@ RSpec.describe "/api/v1/users" do
 
     context "with user" do
       describe "GET /index" do
-        before { get api_users_url, headers: valid_headers, as: :json }
+        before { get api_v1_users_url, headers: valid_headers, as: :json }
 
         it "renders a successful response" do
           expect(response).to be_successful

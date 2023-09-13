@@ -30,7 +30,7 @@ RSpec.describe "/api/v1/projects" do
 
     describe "GET /index" do
       subject(:api_call) do
-        get api_projects_url, headers: valid_headers, as: :json
+        get api_v1_projects_url, headers: valid_headers, as: :json
       end
 
       it "renders a successful response" do
@@ -41,7 +41,7 @@ RSpec.describe "/api/v1/projects" do
 
     describe "GET /show" do
       subject(:api_call) do
-        get api_project_url(project), headers: valid_headers, as: :json
+        get api_v1_project_url(project), headers: valid_headers, as: :json
       end
 
       it "renders a successful response" do
@@ -52,7 +52,7 @@ RSpec.describe "/api/v1/projects" do
 
     describe "PATCH /update" do
       subject(:api_call) do
-        patch api_project_url(project), params: attributes, headers: valid_headers, as: :json
+        patch api_v1_project_url(project), params: attributes, headers: valid_headers, as: :json
       end
 
       let(:new_attributes) do
@@ -91,7 +91,7 @@ RSpec.describe "/api/v1/projects" do
 
     describe "DELETE /destroy" do
       subject(:api_call) do
-        delete api_project_url(project), headers: valid_headers, as: :json
+        delete api_v1_project_url(project), headers: valid_headers, as: :json
       end
 
       it "destroys the requested project" do
@@ -105,7 +105,7 @@ RSpec.describe "/api/v1/projects" do
   context "without project" do
     describe "POST /create" do
       subject(:api_call) do
-        post api_projects_url, params: { project: attributes }, headers: valid_headers, as: :json
+        post api_v1_projects_url, params: { project: attributes }, headers: valid_headers, as: :json
       end
 
       context "with valid parameters" do

@@ -12,7 +12,7 @@ module Api
     protected
 
     def api_version
-      return unless request.headers["API-Version"]&.match(ApiVersion::API_REGEXP)
+      return unless request.headers["API-Version"]&.match(%r{application/vnd.acme.v(?<version>\d+(?<minor>\.\d*)?)\+json})
 
       Current.api_version = Regexp.last_match[:version].to_f
     end
