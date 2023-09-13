@@ -34,21 +34,13 @@ RSpec.describe "/api/v1/users" do
 
         it "renders a valid JSON" do
           expect(JSON.parse(response.body)).to eql( # rubocop:disable Rails/ResponseParsedBody
-            {
-              "data" => [
-                {
-                  "id" => "01H7YRXCXK0M10W3RC045GW001",
-                  "type" => "user",
-                  "attributes" => {
-                    "name" => "John",
-                    "email" => "teressa@mullerbuckridge.us",
-                    "username" => "dia.hyatt",
-                    "created_at" => "2004-11-24T00:00:00.000Z",
-                    "updated_at" => "2004-11-24T00:00:00.000Z"
-                  }
-                }
-              ]
-            }
+            [
+              {
+                "id" => "01H7YRXCXK0M10W3RC045GW001",
+                "name" => "John",
+                "email" => "teressa@mullerbuckridge.us"
+              }
+            ]
           )
         end
 

@@ -5,9 +5,7 @@ module Api
     class UsersController < ApiController
       # GET /users
       def index
-        authorized_collection = User.all
-
-        render json: UserSerializer.new(authorized_collection, is_collection: true).serializable_hash
+        render json: User.all.map { |user| user.attributes.slice("id", "name", "email") }
       end
     end
   end

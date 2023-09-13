@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users.map { |user| user.attributes.slice(*%w[id email name username created_at updated_at password_digest]) }
   end
 
   # GET /users/1
