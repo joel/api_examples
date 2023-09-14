@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "users/collapse_name"
-require_relative "users/rename_name"
+require "api/v1/users/collapse_name"
+require "api/v1/users/rename_name"
 
 module Api
   module V1

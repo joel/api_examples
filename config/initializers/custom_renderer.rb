@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# config/initializers/custom_renderer.rb
-
-require_relative "../../app/api_versions/api/v1/version_patcher"
+require "api/v1/version_patcher"
 
 ActionController::Renderers.add :api_versioned_json do |json, options|
   json = json.to_json(options) unless json.is_a?(String)
