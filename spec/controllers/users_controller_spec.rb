@@ -8,7 +8,7 @@ RSpec.describe UsersController do
   end
 
   let(:invalid_attributes) do
-    valid_attributes.except("name", "id", "updated_at", "created_at")
+    valid_attributes.except("first_name")
   end
 
   let(:valid_session) { {} }
@@ -77,7 +77,7 @@ RSpec.describe UsersController do
 
         expect do
           put :update, params: { id: user.to_param, user: new_attributes }, session: valid_session
-        end.to change { user.reload.name }.from(user.name).to(new_attributes["name"])
+        end.to change { user.reload.first_name }.from(user.first_name).to(new_attributes["first_name"])
       end
 
       it "renders a JSON response with the user" do

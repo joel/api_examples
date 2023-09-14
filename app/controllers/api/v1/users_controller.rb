@@ -3,9 +3,12 @@
 module Api
   module V1
     class UsersController < ApiController
-      # GET /users
       def index
-        render json: User.all.map { |user| user.attributes.slice("id", "name", "email") }
+        @users = User.all
+
+        users_data = @users.as_json(only: %w[id first_name last_name email])
+
+        render api_versioned_json: users_data
       end
     end
   end

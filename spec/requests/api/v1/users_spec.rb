@@ -10,7 +10,8 @@ RSpec.describe "/api/v1/users" do
       create(
         :user,
         id: "01H7YRXCXK0M10W3RC045GW001",
-        name: "John",
+        first_name: "John",
+        last_name: "Doe",
         email: "teressa@mullerbuckridge.us",
         username: "dia.hyatt"
       )
@@ -19,7 +20,7 @@ RSpec.describe "/api/v1/users" do
       {
         "Authorization" => "Bearer #{JWT.encode({ user_id: user.id }, Rails.application.credentials.secret_key_base, 'HS256')}",
         "Accept" => "application/json",
-        "API-Version" => "2023-09-13"
+        "API-Version" => "2023-09-15"
       }
     end
 
@@ -34,7 +35,7 @@ RSpec.describe "/api/v1/users" do
             api_call
           end.to change {
             user.reload.api_version
-          }.from(nil).to("2023-09-13")
+          }.from(nil).to("2023-09-15")
 
           expect do
             api_call
@@ -54,7 +55,8 @@ RSpec.describe "/api/v1/users" do
             [
               {
                 "id" => "01H7YRXCXK0M10W3RC045GW001",
-                "name" => "John",
+                "first_name" => "John",
+                "last_name" => "Doe",
                 "email" => "teressa@mullerbuckridge.us"
               }
             ]
@@ -63,7 +65,7 @@ RSpec.describe "/api/v1/users" do
 
         it "renders Response Header API Version" do
           api_call
-          expect(response.headers["X-Acme-Api-Version"]).to be("2023-09-13")
+          expect(response.headers["X-Acme-Api-Version"]).to be("2023-09-15")
         end
       end
     end

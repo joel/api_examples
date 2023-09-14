@@ -3,7 +3,8 @@
 FactoryBot.define do
   factory :user do
     id { ArUlid.configuration.generator.generate_id }
-    name { FFaker::Name.unique.name }
+    first_name { FFaker::Name.unique.first_name }
+    last_name { FFaker::Name.unique.last_name }
     email { FFaker::Internet.unique.email }
     username { FFaker::Internet.unique.user_name }
     password { FFaker::Internet.password }
