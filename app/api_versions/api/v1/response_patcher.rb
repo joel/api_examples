@@ -5,7 +5,7 @@ require "api/v1/users/rename_name"
 
 module Api
   module V1
-    class VersionPatcher
+    class ResponsePatcher
       attr_reader :data, :api_version, :endpoint
 
       VERSIONS = %w[
