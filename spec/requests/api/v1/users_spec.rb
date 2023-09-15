@@ -149,21 +149,21 @@ RSpec.describe "/api/v1/users" do
             end
           end
 
-          # describe "POST #create" do
-          #   context "with valid params" do
-          #     let(:attributes) do
-          #       new_attributes = valid_attributes.except("first_name", "last_name")
-          #       new_attributes["fullname"] = "John Doe"
-          #       new_attributes
-          #     end
+          describe "POST #create" do
+            context "with valid params" do
+              let(:attributes) do
+                new_attributes = valid_attributes.except("first_name", "last_name")
+                new_attributes["fullname"] = "John Doe"
+                new_attributes
+              end
 
-          #     it "creates a new User" do
-          #       expect do
-          #         post api_v1_users_url, params: { user: attributes }, headers: valid_headers, as: :json
-          #       end.to change(User, :count).by(1)
-          #     end
-          #   end
-          # end
+              it "creates a new User" do
+                expect do
+                  post api_v1_users_url, params: { user: attributes }, headers: valid_headers, as: :json
+                end.to change(User, :count).by(1)
+              end
+            end
+          end
         end
       end
     end

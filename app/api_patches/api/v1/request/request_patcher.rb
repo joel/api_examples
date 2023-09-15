@@ -37,7 +37,7 @@ module Api
           requested_version_index = VERSIONS.index(api_version)
           patches_to_apply        = VERSIONS[0..requested_version_index]
 
-          patches_to_apply.each do |version|
+          patches_to_apply.reverse_each do |version|
             strategy = STRATEGIES[endpoint][version]
             next unless strategy
 

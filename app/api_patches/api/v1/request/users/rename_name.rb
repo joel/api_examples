@@ -10,7 +10,7 @@ module Api
 
             if safe_params.dig("user", "fullname")
               safe_params["user"]["name"] = safe_params["user"]["fullname"]
-              safe_params["user"].delete("name")
+              safe_params["user"].delete("fullname")
             end
 
             safe_params
