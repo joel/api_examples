@@ -7,8 +7,6 @@ module Api
   module V1
     module Response
       class ResponsePatcher
-        attr_reader :data, :api_version, :endpoint
-
         VERSIONS = %w[
           2023-09-15
           2023-09-01
@@ -26,7 +24,7 @@ module Api
         }.freeze
 
         def initialize(data, api_version, endpoint)
-          @data        = data
+          @data        = data.dup
           @api_version = api_version
           @endpoint    = endpoint
         end
@@ -37,11 +35,17 @@ module Api
 
           patches_to_apply.each do |version|
             strategy = STRATEGIES[endpoint][version]
-            @data = strategy.apply(@data) if strategy
+            next unless strategy
+
+            @data = strategy.apply(data)
           end
 
-          @data
+          data
         end
+
+        private
+
+        attr_reader :data, :api_version, :endpoint
       end
     end
   end

@@ -32,7 +32,7 @@ module Api
         end
 
         def apply
-          return @params unless api_version && STRATEGIES[endpoint]
+          return params unless api_version && STRATEGIES[endpoint]
 
           requested_version_index = VERSIONS.index(api_version)
           patches_to_apply        = VERSIONS[0..requested_version_index]
@@ -41,10 +41,10 @@ module Api
             strategy = STRATEGIES[endpoint][version]
             next unless strategy
 
-            @params = strategy.apply(@params)
+            @params = strategy.apply(params)
           end
 
-          @params
+          params
         end
       end
     end
