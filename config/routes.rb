@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resources :users, only: :index
     end
     namespace :v1 do
-      resources :users, only: :index
+      resources :users, only: %i[index create]
       resources :projects
     end
   end

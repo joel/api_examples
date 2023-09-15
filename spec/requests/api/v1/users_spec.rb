@@ -5,6 +5,10 @@ require "rails_helper"
 RSpec.describe "/api/v1/users" do
   before { travel_to Date.new(2004, 11, 24) }
 
+  let(:valid_attributes) do
+    build(:user).attributes.except("id", "updated_at", "created_at")
+  end
+
   context "with an authenticated user" do
     let(:user) do
       create(
@@ -54,7 +58,7 @@ RSpec.describe "/api/v1/users" do
 
           it "renders a valid JSON" do
             api_call
-            expect(JSON.parse(response.body)).to eql( # rubocop:disable Rails/ResponseParsedBody
+            expect(response.parsed_body).to eql(
               [
                 {
                   "id" => "01H7YRXCXK0M10W3RC045GW001",
@@ -71,6 +75,18 @@ RSpec.describe "/api/v1/users" do
             expect(response.headers["X-Acme-Api-Version"]).to be("2023-09-15")
           end
         end
+
+        describe "POST #create" do
+          context "with valid params" do
+            let(:attributes) { valid_attributes }
+
+            it "creates a new User" do
+              expect do
+                post api_v1_users_url, params: { user: attributes }, headers: valid_headers, as: :json
+              end.to change(User, :count).by(1)
+            end
+          end
+        end
       end
 
       context "previous API versions" do
@@ -83,7 +99,7 @@ RSpec.describe "/api/v1/users" do
             it "renders a valid JSON" do
               api_call
 
-              expect(JSON.parse(response.body)).to eql( # rubocop:disable Rails/ResponseParsedBody
+              expect(response.parsed_body).to eql(
                 [
                   {
                     "id" => "01H7YRXCXK0M10W3RC045GW001",
@@ -92,6 +108,22 @@ RSpec.describe "/api/v1/users" do
                   }
                 ]
               )
+            end
+          end
+
+          describe "POST #create" do
+            context "with valid params" do
+              let(:attributes) do
+                new_attributes = valid_attributes.except("first_name", "last_name")
+                new_attributes["name"] = "John Doe"
+                new_attributes
+              end
+
+              it "creates a new User" do
+                expect do
+                  post api_v1_users_url, params: { user: attributes }, headers: valid_headers, as: :json
+                end.to change(User, :count).by(1)
+              end
             end
           end
         end
@@ -105,7 +137,7 @@ RSpec.describe "/api/v1/users" do
             it "renders a valid JSON" do
               api_call
 
-              expect(JSON.parse(response.body)).to eql( # rubocop:disable Rails/ResponseParsedBody
+              expect(response.parsed_body).to eql(
                 [
                   {
                     "id" => "01H7YRXCXK0M10W3RC045GW001",
@@ -116,6 +148,22 @@ RSpec.describe "/api/v1/users" do
               )
             end
           end
+
+          # describe "POST #create" do
+          #   context "with valid params" do
+          #     let(:attributes) do
+          #       new_attributes = valid_attributes.except("first_name", "last_name")
+          #       new_attributes["fullname"] = "John Doe"
+          #       new_attributes
+          #     end
+
+          #     it "creates a new User" do
+          #       expect do
+          #         post api_v1_users_url, params: { user: attributes }, headers: valid_headers, as: :json
+          #       end.to change(User, :count).by(1)
+          #     end
+          #   end
+          # end
         end
       end
     end
