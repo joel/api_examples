@@ -52,7 +52,7 @@ module BackendAuthentication
       generator.fixture_replacement :factory_bot, dir: "spec/factories"
       generator.orm :active_record # , primary_key_type: :uuid
       generator.template_engine :erb
-      # generator.scaffold_controller :api_controller
+      generator.scaffold_controller :custom_scaffold
     end
 
     require Rails.root.join("app/lib/response_api_version_header")
