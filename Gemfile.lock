@@ -125,11 +125,13 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-linux)
+      racc (~> 1.4)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
-    puma (5.6.7)
+    puma (6.3.1)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -227,6 +229,7 @@ GEM
     ruby-next-core (0.15.3)
     ruby-progressbar (1.13.0)
     sqlite3 (1.6.6-arm64-darwin)
+    sqlite3 (1.6.6-x86_64-linux)
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
@@ -240,6 +243,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   action_policy (~> 0.6.5)
@@ -250,7 +254,7 @@ DEPENDENCIES
   ffaker
   jsonapi-serializer (~> 2.2)
   jwt (~> 2.7)
-  puma (~> 5.0)
+  puma (~> 6.3)
   rack-cors
   rails (~> 7.0.6)
   rspec-rails
