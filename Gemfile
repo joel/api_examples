@@ -55,6 +55,6 @@ gem "jwt", "~> 2.7"
 
 gem "bcrypt", "~> 3.1"
 
-gem "action_policy", "~> 0.6.5"
+gem "action_policy", "~> 0.6.7"
 
 gem "jsonapi-serializer", "~> 2.2"
