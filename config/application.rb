@@ -57,5 +57,8 @@ module BackendAuthentication
 
     require Rails.root.join("app/lib/response_api_version_header")
     config.middleware.use ResponseApiVersionHeader
+
+    require Rails.root.join("app/lib/api_request_patcher")
+    config.middleware.use ApiRequestPatcher
   end
 end

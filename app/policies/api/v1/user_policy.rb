@@ -7,6 +7,10 @@ module Api
         true
       end
 
+      def create?
+        true
+      end
+
       private
 
       def based_scope

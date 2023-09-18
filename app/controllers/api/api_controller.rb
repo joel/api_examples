@@ -2,7 +2,7 @@
 
 module Api
   class ApiController < ApplicationController
-    before_action :api_version
+    before_action :set_api_version
 
     include ActionPolicy::Controller
     authorize :user, through: :current_user
@@ -11,10 +11,15 @@ module Api
 
     protected
 
-    def api_version
-      return unless request.headers["API-Version"]&.match(ApiVersion::API_REGEXP)
+    def set_api_version
+      return unless request.headers["API-Version"]&.match(/\d{4}-\d{2}-\d{2}/)
 
-      Current.api_version = Regexp.last_match[:version].to_f
+      Current.api_version = request.headers["API-Version"]
+      Current.user.update(api_version: request.headers["API-Version"]) if Current.user&.api_version.nil?
+    end
+
+    def api_version
+      Current.api_version
     end
   end
 end

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users.map { |user| user.attributes.slice(*%w[id email name username created_at updated_at password_digest]) }
   end
 
   # GET /users/1
@@ -51,6 +51,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:name, :email, :username, :password_digest)
+    params.require(:user).permit(:first_name, :last_name, :email, :username, :password_digest)
   end
 end

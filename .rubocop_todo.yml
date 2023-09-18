@@ -14,10 +14,11 @@ Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
 
-# Offense count: 1
+# Offense count: 3
 GitlabSecurity/JsonSerialization:
   Exclude:
-    - 'spec/serializers/api/v1/user_serializer_spec.rb'
+    - 'app/lib/api_request_patcher.rb'
+    - 'config/initializers/custom_renderer.rb'
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
@@ -37,29 +38,36 @@ Layout/LeadingCommentSpace:
     - 'config/initializers/rswag_api.rb'
 
 # Offense count: 1
+# Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
+Metrics/AbcSize:
+  Max: 29
+
+# Offense count: 1
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/CyclomaticComplexity:
   Max: 9
 
-# Offense count: 3
+# Offense count: 4
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
 Metrics/MethodLength:
-  Max: 12
+  Max: 15
 
 # Offense count: 1
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/PerceivedComplexity:
   Max: 9
 
-# Offense count: 1
-RSpec/AnyInstance:
+# Offense count: 4
+# Configuration parameters: Prefixes, AllowedPatterns.
+# Prefixes: when, with, without
+RSpec/ContextWording:
   Exclude:
-    - 'spec/routing/api/v1/projects_routing_spec.rb'
+    - 'spec/requests/api/v1/users_spec.rb'
 
-# Offense count: 2
+# Offense count: 4
 # Configuration parameters: CountAsOne.
 RSpec/ExampleLength:
-  Max: 17
+  Max: 11
 
 # Offense count: 4
 # Configuration parameters: .
@@ -67,7 +75,7 @@ RSpec/ExampleLength:
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
-# Offense count: 13
+# Offense count: 14
 RSpec/MultipleExpectations:
   Max: 3
 
@@ -76,10 +84,10 @@ RSpec/MultipleExpectations:
 RSpec/MultipleMemoizedHelpers:
   Max: 9
 
-# Offense count: 6
+# Offense count: 15
 # Configuration parameters: AllowedGroups.
 RSpec/NestedGroups:
-  Max: 4
+  Max: 7
 
 # Offense count: 2
 # Configuration parameters: Severity, Include.
