@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 # lib/generators/rails/custom_scaffold_generator.rb
 
-require 'rails/generators/rails/scaffold/scaffold_generator'
+require "rails/generators/rails/scaffold/scaffold_generator"
 
 module Rails
   module Generators
     class CustomScaffoldGenerator < ScaffoldGenerator
-      source_root File.expand_path('../templates', __FILE__)
+      source_root File.expand_path("templates", __dir__)
 
       # Override invoke_all to call our custom methods
       def invoke_all
