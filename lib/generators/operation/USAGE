@@ -1,9 +1,0 @@
-Description:
-    This generator creates a schema file for the given model and action.
-
-Example:
-    bin/rails generate operation <model> <action> <field_name>:<field_type>:<field_requirement> ...
-    bin/rails generate operation user create firstname:string:optional lastname:string:optional email:string:required --force
-
-    This will create:
-        app/operations/users/create/schema.rb
