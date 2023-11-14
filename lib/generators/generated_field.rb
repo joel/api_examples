@@ -20,7 +20,7 @@ module Generators
 
     class << self
       def parse(field)
-        name, type, requirement, raw_options = field.split(":", 4)
+        name, type, requirement, raw_options = field.split(':', 4)
 
         field_options = raw_options ? eval(raw_options) : {}
 
